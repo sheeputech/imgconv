@@ -43,15 +43,15 @@ if __name__ == '__main__':
     ico_files = ['{path}.ico'.format(path=f.rsplit('.')[0]) for f in png_files]
 
     print('Converting from SVG to PNG')
-    for f, p in tqdm(iter(zip(in_files, png_files))):
+    for f, p in tqdm(list(zip(in_files, png_files))):
         try:
             svg2png(
-                url=f, write_to=p, output_width=128, output_height=128, scale=1.0)
+                url=f, write_to=p, output_width=512, output_height=512, scale=2.0)
         except IOError:
             print('Failed to convert SVG to PNG:', f)
 
     print('Converting from PNG to ICO')
-    for p, i in tqdm(iter(zip(png_files, ico_files))):
+    for p, i in tqdm(list(zip(png_files, ico_files))):
         try:
             img = Image.open(p)
             img.save(i, "ICO")
@@ -60,6 +60,7 @@ if __name__ == '__main__':
 
     print('Removing temporary PNG files.')
     for f in png_files:
-        os.remove(f)
+        if os.path.isfile(f):
+            os.remove(f)
 
     print('Image conversion was successfully completed.')
