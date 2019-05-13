@@ -1,19 +1,26 @@
 # imgconv
 Convert images to another format with Python.  
 
-<small>*Note.1: You need to install [Python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) before using this image converter.*</small>  
-<small>*Note.2: If you use Windows, you need to install [GTK+ (The GIMP Toolkit)](http://futago-life.com/wife-support/tech/import-cairosvg-error.html) additionally.*</small>  
+<small>*\*1: You need to install [Python](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installing/) before using this image converter.*</small>  
+<small>*\*2: If you use Windows, you need to install [GTK+ (The GIMP Toolkit)](http://futago-life.com/wife-support/tech/import-cairosvg-error.html) additionally.*</small>  
 
 ## Usage
-### Installation
+### Clone repository
 ```
-$ pip install -U imgconv
+$ git clone git@github.com:sheeputech/imgconv
+```
+
+### Installation
+In the repository root directory,
+```
+$ pip install -e .
 ```
 
 ### Convert your files interactively
 ```
 $ imgconv -i
 ```
+<small>* Default file format is PNG.</small>
 
 ## Supporting conversion formats
 ### from  
