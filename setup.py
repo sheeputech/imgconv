@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='imageco',
+    name='imgconv',
     version='0.0.1',
     description='Convert SVG files to ICO images',
     author='Kazumasa Hirata',
@@ -10,7 +10,7 @@ setup(
     install_require=['cairosvg', 'Pillow', 'tqdm'],
     entry_points={
         'console_scripts': [
-            'imageco = imageco:main'
+            'imgconv = imgconv:main'
         ]
     }
 )
