@@ -52,39 +52,40 @@ def main(ctx, interactive, fs, dest, filetype):
     log(LOG_INFO, f'Destination directory is : {dest}')
 
     # set format
-    ext = 'png'
+    outext = 'png'
     if filetype == 'JPEG':
-        ext = 'jpg'
+        outext = 'jpg'
     elif filetype == 'ICO':
-        ext = 'ico'
+        outext = 'ico'
 
     # convert images
     log(LOG_INFO, 'Converting images...')
     separated = [f.rsplit('/', 1)[1].split('.') for f in fs]
+
     for f, s in tqdm(list(zip(fs, separated))):
         file = s[0]
         ext = s[1]
-        path = f'{dest}/{file}.{ext}'
+        path = f'{dest}/{file}.{outext}'
 
         if ext == 'svg':
             path_png = f'{dest}/{file}.png'
             try:
                 svg2png(url=f, write_to=path_png,
-                        output_width=512, output_height=512, scale=2.0)
+                        output_width=512, output_height=512, scale=1.0)
             except IOError:
                 log(LOG_ERROR, f'Failed to convert image (SVG to PNG): {f}')
 
             if filetype != 'PNG':
                 try:
                     img = Image.open(path_png)
-                    img.save(path, ext)
+                    img.save(path, outext)
                     os.remove(path_png)
                 except IOError:
                     log(LOG_ERROR, f'Failed to convert image: {f}')
         else:
             try:
                 img = Image.open(f)
-                img.save(path, ext)
+                img.save(path, outext)
             except IOError:
                 log(LOG_ERROR, f'Failed to convert image: {f}')
 
